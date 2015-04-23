@@ -1,0 +1,38 @@
+import maya.cmds as cmds
+
+#TODO: add the actual attribute
+#TODO: make a UI for tool
+
+# Define Drivers
+driverObject = "control"            
+driverAttribute = ".pSphereVis"  
+
+#Define Driven
+drivenPrefix = "pSphere"
+drivenCount = 10
+
+drivenNum1 = 10
+drivenNum2 = 9
+
+driverKeyframe = 10
+
+attrVis = ".visibility"
+
+driver = driverObject + driverAttribute
+
+for i in range(drivenCount):
+
+    currentDriven1 = str(drivenPrefix + str(drivenNum1) + attrVis)
+    currentDriven2 = str(drivenPrefix + str(drivenNum2) + attrVis)
+    
+    cmds.setDrivenKeyframe(currentDriven1, cd=driver, dv=driverKeyframe, v=1)
+    cmds.setDrivenKeyframe(currentDriven1, cd=driver, dv=driverKeyframe -1, v=0)
+    
+    print "i = " + str(i)
+    print currentDriven1 + ": "
+    print "key frame: " + str(driverKeyframe) + " value: 1"
+    print "key frame: " + str(driverKeyframe -1) + " value: 0"    
+
+    drivenNum1 -= 1
+    drivenNum2 -= 1
+    driverKeyframe -= 1
